@@ -11,6 +11,7 @@
             --widget-bg: #f0f8ff; /* Alice Blue */
         }
         body { font-family: 'Roboto', sans-serif; margin: 0; padding: 10px; background: transparent; }
+        
         .cockpit-container {
             background: var(--widget-bg);
             border-radius: 12px;
@@ -20,6 +21,7 @@
             box-sizing: border-box;
             overflow: hidden;
         }
+
         .brand-header {
             background: var(--navy-blue);
             color: white;
@@ -30,17 +32,23 @@
             justify-content: space-between;
             border-bottom: 3px solid var(--navy-gold);
         }
+
         .nav-pills { display: flex; background: rgba(0, 76, 145, 0.05); border-bottom: 1px solid rgba(0, 76, 145, 0.1); }
+        
         .pill {
             flex: 1; padding: 14px 8px; border: none; background: transparent;
             color: var(--navy-blue); font-size: 11px; font-weight: 700;
             cursor: pointer; text-transform: uppercase;
         }
+        
         .pill.active { background: var(--widget-bg); border-top: 3px solid var(--navy-blue); }
-        .content-pane { padding: 15px; min-height: 320px; display: none; }
+
+        /* Removed fixed min-height to eliminate white space */
+        .content-pane { padding: 15px; display: none; }
         .content-pane.active { display: block; }
+
         .data-row {
-            padding: 12px 0;
+            padding: 10px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -48,18 +56,25 @@
             flex-wrap: wrap;
             gap: 10px;
         }
+
+        .data-label { font-size: 13px; }
         .data-value { font-weight: 700; color: var(--navy-blue); }
+
         .accordion-header {
             width: 100%; padding: 12px 0; background: none; border: none;
             text-align: left; font-weight: 700; color: var(--navy-blue);
             display: flex; justify-content: space-between; cursor: pointer;
             border-bottom: 1px solid rgba(0, 76, 145, 0.1);
         }
+
         .accordion-content {
             display: none; padding: 12px; background: rgba(255,255,255,0.6);
             border-left: 4px solid var(--navy-blue); font-size: 13px; font-style: italic; margin-top: 5px;
         }
+
         .copy-btn { font-size: 10px; background: var(--navy-blue); color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; }
+        
+        .section-tag { font-size: 10px; font-weight: 800; color: #718096; text-transform: uppercase; margin-top: 10px; display: block; }
     </style>
 </head>
 <body>
@@ -72,25 +87,41 @@
     </div>
 
     <div id="rates" class="content-pane active">
+        <span class="section-tag">Consumer Loans</span>
         <div class="data-row"><span>VA Home Loan (30Y)</span><span><b class="data-value">6.25%</b> <button class="copy-btn" onclick="copy('6.25%')">Copy</button></span></div>
-        <div class="data-row"><span>Active Duty Auto Loan</span><span><b class="data-value">4.99%</b> <button class="copy-btn" onclick="copy('4.99%')">Copy</button></span></div>
+        <div class="data-row"><span>Active Duty Auto</span><span><b class="data-value">4.99%</b> <button class="copy-btn" onclick="copy('4.99%')">Copy</button></span></div>
+        <div class="data-row"><span>Personal Loan</span><span><b class="data-value">8.99%</b> <button class="copy-btn" onclick="copy('8.99%')">Copy</button></span></div>
+        
+        <span class="section-tag">Certificates & Savings</span>
         <div class="data-row"><span>12-Month Share Cert</span><span><b class="data-value">5.30%</b> <button class="copy-btn" onclick="copy('5.30%')">Copy</button></span></div>
+        <div class="data-row"><span>24-Month Share Cert</span><span><b class="data-value">4.85%</b> <button class="copy-btn" onclick="copy('4.85%')">Copy</button></span></div>
+        <div class="data-row"><span>Money Market Savings</span><span><b class="data-value">2.25%</b> <button class="copy-btn" onclick="copy('2.25%')">Copy</button></span></div>
     </div>
 
     <div id="scripts" class="content-pane">
         <div class="accordion-item">
             <button class="accordion-header" onclick="toggle('s1')">PCS / Military Move <span>+</span></button>
-            <div id="s1" class="accordion-content">"I see you are preparing for a PCS move. I can help set up your travel notifications." <button class="copy-btn" style="width:100%;margin-top:10px" onclick="copy('PCS Script')">Copy</button></div>
+            <div id="s1" class="accordion-content">"I see you are preparing for a PCS move. I can help set up your travel notifications and discuss relocation loans." <button class="copy-btn" style="width:100%;margin-top:10px" onclick="copy('PCS Script')">Copy</button></div>
         </div>
         <div class="accordion-item">
-            <button class="accordion-header" onclick="toggle('s2')">Fraud Protocol <span>+</span></button>
-            <div id="s2" class="accordion-content">"I am immediately securing your accounts. Let's verify your transactions." <button class="copy-btn" style="width:100%;margin-top:10px" onclick="copy('Fraud Script')">Copy</button></div>
+            <button class="accordion-header" onclick="toggle('s2')">Fraud / Account Freeze <span>+</span></button>
+            <div id="s2" class="accordion-content">"I am immediately securing your accounts. Let's verify your transactions together." <button class="copy-btn" style="width:100%;margin-top:10px" onclick="copy('Fraud Script')">Copy</button></div>
+        </div>
+        <div class="accordion-item">
+            <button class="accordion-header" onclick="toggle('s3')">Membership Eligibility <span>+</span></button>
+            <div id="s3" class="accordion-content">"Membership is open to all Department of Defense uniformed personnel, veterans, and their families. Would you like to check your status?" <button class="copy-btn" style="width:100%;margin-top:10px" onclick="copy('Eligibility Script')">Copy</button></div>
         </div>
     </div>
 
     <div id="faq" class="content-pane">
         <div class="data-row"><span>ROUTING NUMBER</span><span><b class="data-value">256074112</b> <button class="copy-btn" onclick="copy('256074112')">Copy</button></span></div>
         <div class="data-row"><span>WIRE FEE (INTL)</span><span><b class="data-value">$25.00</b> <button class="copy-btn" onclick="copy('$25.00')">Copy</button></span></div>
+        <div class="data-row"><span>ZELLE LIMIT (DAILY)</span><span><b class="data-value">$1,000</b> <button class="copy-btn" onclick="copy('$1,000')">Copy</button></span></div>
+        
+        <span class="section-tag">Operating Hours (EST)</span>
+        <div class="data-row"><span>Call Center</span><span><b>24/7/365</b></span></div>
+        <div class="data-row"><span>Standard Branches</span><span><b>0900 - 1700</b></span></div>
+        <div class="data-row"><span>Saturday Support</span><span><b>0900 - 1300</b></span></div>
     </div>
 </div>
 
